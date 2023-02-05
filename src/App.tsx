@@ -1,8 +1,12 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import { observer } from "mobx-react";
+import themeStore from "./store/ThemeStore";
 
 function App() {
+
+  const store = themeStore;
   return (
     <div className="App">
       <header className="App-header">
@@ -10,6 +14,9 @@ function App() {
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
+        <button onClick={(e) => store.changeTheme()}>
+          Change cookie {store.getTheme()}
+        </button>
         <a
           className="App-link"
           href="https://reactjs.org"
@@ -23,4 +30,4 @@ function App() {
   );
 }
 
-export default App;
+export default observer(App);
